@@ -1,0 +1,9 @@
+{
+  "item.minecraft.splash_potion.effect.transparency": "Splash Potion of Transparency",
+  "item.minecraft.potion.effect.transparency": "Potion of Transparency",
+  "item.minecraft.lingering_potion.effect.transparency": "Lingering Potion of Transparency",
+  "item.minecraft.tiped_arrow.effect.transparency": "Arrow of Transparency",
+  "effect.ghost.transparency": "Transparency",
+  "effect.ghost.ghost_state": "Ghost State",
+  "item.ghost.ghost_totem": "Ghost Totem"
+}
