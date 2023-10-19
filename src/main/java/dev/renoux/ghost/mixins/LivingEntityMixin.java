@@ -2,12 +2,9 @@ package dev.renoux.ghost.mixins;
 
 import dev.renoux.ghost.load.ModRegistries;
 import dev.renoux.ghost.networking.EffectPacket;
-import dev.renoux.ghost.networking.NetworkingConstant;
 import dev.renoux.ghost.utils.LivingEntityWithEffects;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -20,7 +17,6 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity implements LivingEntityWithEffects {
@@ -28,7 +24,11 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityWi
     private boolean ghostState = false;
 
     @Unique
+    private boolean permanentGhostState = false;
+
+    @Unique
     private boolean transparency = false;
+
     public LivingEntityMixin(EntityType<?> variant, Level world) {
         super(variant, world);
     }
@@ -36,13 +36,17 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityWi
     @Inject(method = "onEffectAdded(Lnet/minecraft/world/effect/MobEffectInstance;Lnet/minecraft/world/entity/Entity;)V", at = @At("HEAD"))
     private void ghost$captureAddEffects(MobEffectInstance effect, Entity source, CallbackInfo ci) {
         if (effect.getEffect().equals(ModRegistries.TRANSPARENCY_EFFECT) || effect.getEffect().equals(ModRegistries.GHOST_STATE_EFFECT)) {
-            ghost$setTransparency(true);
+            if (effect.getEffect().equals(ModRegistries.TRANSPARENCY_EFFECT)) {
+                ghost$setTransparency(true);
+            } else {
+                ghost$setGhostState(true);
+            };
             if (!this.level().isClientSide()) {
                 EffectPacket packet = new EffectPacket(this, effect.getEffect(), true);
                 FriendlyByteBuf buf = PacketByteBufs.create();
                 packet.write(buf);
                 for (ServerPlayer player : this.getServer().getPlayerList().getPlayers()) {
-                    ServerPlayNetworking.send(player, NetworkingConstant.EFFECT, buf);
+                    ServerPlayNetworking.send(player, EffectPacket.PACKET, buf);
                 }
             }
         }
@@ -51,13 +55,15 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityWi
     @Inject(method = "onEffectRemoved(Lnet/minecraft/world/effect/MobEffectInstance;)V", at = @At("HEAD"))
     private void ghost$captureRemoveEffects(MobEffectInstance effect, CallbackInfo ci) {
         if (effect.getEffect().equals(ModRegistries.TRANSPARENCY_EFFECT) || effect.getEffect().equals(ModRegistries.GHOST_STATE_EFFECT)) {
-            ghost$setTransparency(false);
+            if (effect.getEffect().equals(ModRegistries.TRANSPARENCY_EFFECT)) {
+                ghost$setTransparency(false);
+            }
             if (!this.level().isClientSide()) {
                 EffectPacket packet = new EffectPacket(this, effect.getEffect(), false);
                 FriendlyByteBuf buf = PacketByteBufs.create();
                 packet.write(buf);
                 for (ServerPlayer player : this.getServer().getPlayerList().getPlayers()) {
-                    ServerPlayNetworking.send(player, NetworkingConstant.EFFECT, buf);
+                    ServerPlayNetworking.send(player, EffectPacket.PACKET, buf);
                 }
             }
         }

@@ -8,7 +8,11 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.Entity;
 
+import static dev.renoux.ghost.Ghost.metadata;
+
 public class EffectPacket implements Packet<ClientGamePacketListener> {
+    public static final ResourceLocation PACKET = new ResourceLocation(metadata.id(), "effect");
+
     private final int entityId;
 
     private final ResourceLocation effectResourceLocation;

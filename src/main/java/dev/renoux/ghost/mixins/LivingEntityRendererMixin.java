@@ -28,32 +28,13 @@ public abstract class LivingEntityRendererMixin<T extends LivingEntity, M extend
 
     @Inject(method = "render(Lnet/minecraft/world/entity/LivingEntity;FFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V", at = @At("HEAD"), cancellable = true)
     private void ghost$getPosOnScreen(T livingEntity, float f, float g, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, CallbackInfo ci) {
-        if (((LivingEntityWithEffects) livingEntity).ghost$getGhostState() && !Minecraft.getInstance().player.is(livingEntity)) {
-            Matrix4f matrix = poseStack.last().pose();
-            Vector3f position = new Vector3f();
-            Vector3f positionEyes = new Vector3f(0, livingEntity.getEyeHeight(), 0);
-            position.mulPosition(matrix);
-            positionEyes.mulPosition(matrix);
-
-            double dist = livingEntity.position().distanceTo(Minecraft.getInstance().gameRenderer.getMainCamera().getPosition());
-
-
-            int h = Minecraft.getInstance().gui.screenHeight;
-            int w = Minecraft.getInstance().gui.screenWidth;
-
-            double x = (position.x / dist) * ((double) w / 2) + (double) w / 2;
-            double yDown = (positionEyes.y / dist) * ((double) h / 2) + (double) h / 2;
-            double yUp = (position.y / dist) * ((double) h / 2) + (double) h / 2;
-
-            double borderX = w * Ghost.BORDER;
-            double borderY = h * Ghost.BORDER*2;
-
-            if (x > borderX && x < w - borderX && yDown > borderY && yUp < h - borderY)
-                ci.cancel();
-        }
+        if (((LivingEntityWithEffects) livingEntity).ghost$getGhostState()
+                && !Minecraft.getInstance().player.is(livingEntity)
+                && Utils.calculateGhostEffect(poseStack, livingEntity))
+            ci.cancel();
     }
 
-    @Inject(method = "Lnet/minecraft/client/renderer/entity/LivingEntityRenderer;isBodyVisible(Lnet/minecraft/world/entity/LivingEntity;)Z", at = @At("RETURN"), cancellable = true)
+    @Inject(method = "isBodyVisible(Lnet/minecraft/world/entity/LivingEntity;)Z", at = @At("RETURN"), cancellable = true)
     private void ghost$transparencyEffect(T entity, CallbackInfoReturnable<Boolean> cir) {
         if (((LivingEntityWithEffects) entity).ghost$getTransparency()) {
             cir.setReturnValue(false);
