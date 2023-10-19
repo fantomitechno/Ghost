@@ -17,7 +17,7 @@ public abstract class EvokerMixin extends SpellcasterIllager {
 
     @Override
     protected void dropCustomDeathLoot(DamageSource source, int lootingMultiplier, boolean allowDrops) {
-        if (this.getEffect(ModRegistries.TRANSPARENCY_EFFECT) != null && Math.random() > 0.1) {
+        if (this.getEffect(ModRegistries.TRANSPARENCY_EFFECT) != null && Math.random() < 0.1 + (double) lootingMultiplier / 20) {
             ItemEntity itemEntity = this.spawnAtLocation(ModRegistries.GHOST_TOTEM);
             if (itemEntity != null) {
                 itemEntity.setExtendedLifetime();

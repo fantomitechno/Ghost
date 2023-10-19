@@ -79,8 +79,8 @@ public abstract class LivingEntityMixin extends Entity implements LivingEntityWi
 
     @Inject(method = "dropCustomDeathLoot(Lnet/minecraft/world/damagesource/DamageSource;IZ)V", at = @At("HEAD"))
     private void ghost$dropCustomDeathLoot(DamageSource source, int lootingMultiplier, boolean allowDrops, CallbackInfo ci) {
-        if (this.getEffect(ModRegistries.TRANSPARENCY_EFFECT) != null && Math.random() > 0.3) {
-            ItemEntity itemEntity = this.spawnAtLocation(ModRegistries.GHOST_TOTEM_SHARD);
+        if (this.getEffect(ModRegistries.TRANSPARENCY_EFFECT) != null && Math.random() < 0.3 + (double) lootingMultiplier / 10) {
+            ItemEntity itemEntity = this.spawnAtLocation(ModRegistries.GHOST_ESSENCE);
             if (itemEntity != null) {
                 itemEntity.setExtendedLifetime();
             }

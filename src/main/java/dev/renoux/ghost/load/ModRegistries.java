@@ -2,12 +2,14 @@ package dev.renoux.ghost.load;
 
 import dev.renoux.ghost.effects.GhostStateEffect;
 import dev.renoux.ghost.effects.TransparencyEffect;
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.registry.FabricBrewingRecipeRegistry;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potion;
@@ -22,7 +24,7 @@ public class ModRegistries {
     public static TransparencyEffect TRANSPARENCY_EFFECT = new TransparencyEffect();
 
     public static Item GHOST_TOTEM;
-    public static Item GHOST_TOTEM_SHARD;
+    public static Item GHOST_ESSENCE;
 
     public static Potion TRANSPARENCY_POTION;
     public static Potion LONG_TRANSPARENCY_POTION;
@@ -41,7 +43,9 @@ public class ModRegistries {
 
     public static void initItems() {
         GHOST_TOTEM = Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(metadata.id(), "ghost_totem"), new Item(new QuiltItemSettings().stacksTo(1)));
-        GHOST_TOTEM_SHARD = Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(metadata.id(), "ghost_totem_shard"), new Item(new QuiltItemSettings().stacksTo(16).fireResistant()));
+        GHOST_ESSENCE = Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(metadata.id(), "ghost_essence"), new Item(new QuiltItemSettings().stacksTo(16).fireResistant()));
+
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.TOOLS_AND_UTILITIES).register((entries -> entries.addAfter(Items.RECOVERY_COMPASS, GHOST_TOTEM, GHOST_ESSENCE)));
     }
 
     public static void initPotions() {

@@ -9,5 +9,6 @@
   "item.minecraft.tiped_arrow.effect.long_transparency": "Arrow of Transparency",
   "effect.ghost.transparency": "Transparency",
   "effect.ghost.ghost_state": "Ghost State",
-  "item.ghost.ghost_totem": "Ghost Totem"
+  "item.ghost.ghost_totem": "Ghost Totem",
+  "item.ghost.ghost_essence": "Ghost essence"
 }

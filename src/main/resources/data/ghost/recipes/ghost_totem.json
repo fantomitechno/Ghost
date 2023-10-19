@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " E ",
+    "NTN",
+    " E "
+  ],
+  "key": {
+    "N": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "T": {
+      "item": "minecraft:totem_of_undying"
+    },
+    "E": {
+      "item": "ghost:ghost_essence"
+    }
+  },
+  "result": {
+    "item": "ghost:ghost_totem",
+    "count": 1
+  }
+}
