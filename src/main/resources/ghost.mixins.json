@@ -4,6 +4,7 @@
   "package": "dev.renoux.ghost.mixins",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "EvokerMixin",
     "LivingEntityMixin",
     "ServerEntityMixin"
   ],

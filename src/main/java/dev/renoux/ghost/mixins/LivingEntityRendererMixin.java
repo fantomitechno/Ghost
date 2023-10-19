@@ -4,6 +4,7 @@ package dev.renoux.ghost.mixins;
 import com.mojang.blaze3d.vertex.PoseStack;
 import dev.renoux.ghost.Ghost;
 import dev.renoux.ghost.utils.LivingEntityWithEffects;
+import dev.renoux.ghost.utils.Utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.MultiBufferSource;

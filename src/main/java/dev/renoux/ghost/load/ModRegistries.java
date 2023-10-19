@@ -22,6 +22,7 @@ public class ModRegistries {
     public static TransparencyEffect TRANSPARENCY_EFFECT = new TransparencyEffect();
 
     public static Item GHOST_TOTEM;
+    public static Item GHOST_TOTEM_SHARD;
 
     public static Potion TRANSPARENCY_POTION;
     public static Potion LONG_TRANSPARENCY_POTION;
@@ -39,7 +40,8 @@ public class ModRegistries {
     }
 
     public static void initItems() {
-          GHOST_TOTEM = Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(metadata.id(), "ghost_totem"), new Item(new QuiltItemSettings().maxCount(1)));
+        GHOST_TOTEM = Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(metadata.id(), "ghost_totem"), new Item(new QuiltItemSettings().stacksTo(1)));
+        GHOST_TOTEM_SHARD = Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(metadata.id(), "ghost_totem_shard"), new Item(new QuiltItemSettings().stacksTo(16).fireResistant()));
     }
 
     public static void initPotions() {
