@@ -44,7 +44,7 @@ public class ModRegistries {
 
     public static void initPotions() {
         TRANSPARENCY_POTION = Registry.register(BuiltInRegistries.POTION, new ResourceLocation(metadata.id(), "transparency"), new Potion(new MobEffectInstance(TRANSPARENCY_EFFECT, 3600)));
-        LONG_TRANSPARENCY_POTION = Registry.register(BuiltInRegistries.POTION, new ResourceLocation(metadata.id(), "transparency"), new Potion(new MobEffectInstance(TRANSPARENCY_EFFECT, 9600)));
+        LONG_TRANSPARENCY_POTION = Registry.register(BuiltInRegistries.POTION, new ResourceLocation(metadata.id(), "long_transparency"), new Potion(new MobEffectInstance(TRANSPARENCY_EFFECT, 9600)));
 
         FabricBrewingRecipeRegistry.registerPotionRecipe(Potions.INVISIBILITY, Ingredient.of(Items.GOLDEN_APPLE), TRANSPARENCY_POTION);
         FabricBrewingRecipeRegistry.registerPotionRecipe(Potions.LONG_INVISIBILITY, Ingredient.of(Items.GOLDEN_APPLE), LONG_TRANSPARENCY_POTION);
