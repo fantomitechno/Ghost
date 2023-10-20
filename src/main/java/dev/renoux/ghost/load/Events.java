@@ -4,18 +4,11 @@ import dev.renoux.ghost.Ghost;
 import dev.renoux.ghost.networking.EffectPacket;
 import dev.renoux.ghost.utils.LivingEntityWithEffects;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import org.quiltmc.qsl.entity.event.api.ServerEntityLoadEvents;
 import org.quiltmc.qsl.entity.event.api.client.ClientEntityLoadEvents;
 import org.quiltmc.qsl.lifecycle.api.event.ServerTickEvents;
-import org.quiltmc.qsl.networking.api.PacketByteBufs;
-import org.quiltmc.qsl.networking.api.ServerPlayConnectionEvents;
-import org.quiltmc.qsl.networking.api.ServerPlayNetworking;
 import org.quiltmc.qsl.networking.api.client.ClientPlayNetworking;
 
 import java.util.HashMap;

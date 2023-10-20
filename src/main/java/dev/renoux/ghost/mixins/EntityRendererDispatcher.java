@@ -1,7 +1,6 @@
 package dev.renoux.ghost.mixins;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import dev.renoux.ghost.Ghost;
 import dev.renoux.ghost.utils.LivingEntityWithEffects;
 import dev.renoux.ghost.utils.Utils;
 import net.minecraft.client.Minecraft;
@@ -10,8 +9,6 @@ import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.LevelReader;
-import org.joml.Matrix4f;
-import org.joml.Vector3f;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
