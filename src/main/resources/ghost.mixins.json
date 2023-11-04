@@ -6,13 +6,15 @@
   "mixins": [
     "EvokerMixin",
     "LivingEntityMixin",
-    "ServerEntityMixin"
+    "ServerEntityMixin",
+    "TargetingConditionsMixin"
   ],
   "injectors": {
     "defaultRequire": 1
   },
   "client": [
-    "EntityRendererDispatcher",
+    "ClientPacketListenerMixin",
+    "EntityRendererDispatcherMixin",
     "LivingEntityRendererMixin"
   ]
 }

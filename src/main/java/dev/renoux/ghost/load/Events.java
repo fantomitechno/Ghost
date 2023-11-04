@@ -3,6 +3,7 @@ package dev.renoux.ghost.load;
 import dev.renoux.ghost.Ghost;
 import dev.renoux.ghost.networking.EffectPacket;
 import dev.renoux.ghost.utils.LivingEntityWithEffects;
+import dev.renoux.ghost.utils.Utils;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.Entity;
@@ -35,14 +36,7 @@ public class Events {
         ClientEntityLoadEvents.AFTER_LOAD.register((entity, world) -> {
             if (packetMap.containsKey(entity.getId())) {
                 EffectPacket packet = packetMap.get(entity.getId());
-                MobEffect effect = BuiltInRegistries.MOB_EFFECT.get(packet.getEffectResourceLocation());
-                if (entity instanceof LivingEntity livingEntity) {
-                    if (effect.equals(ModRegistries.TRANSPARENCY_EFFECT)) {
-                        ((LivingEntityWithEffects) livingEntity).ghost$setTransparency(packet.isActive());
-                    } else if (effect.equals(ModRegistries.GHOST_STATE_EFFECT)) {
-                        ((LivingEntityWithEffects) livingEntity).ghost$setGhostState(packet.isActive());
-                    }
-                }
+                Utils.handleEffectPacket(packet, entity);
             }
         });
     }
@@ -53,14 +47,7 @@ public class Events {
             client.execute(() -> {
                 Entity entity = client.level.getEntity(packet.getEntityId());
                 if (entity != null) {
-                    MobEffect effect = BuiltInRegistries.MOB_EFFECT.get(packet.getEffectResourceLocation());
-                    if (entity instanceof LivingEntity livingEntity) {
-                        if (effect.equals(ModRegistries.TRANSPARENCY_EFFECT)) {
-                            ((LivingEntityWithEffects) livingEntity).ghost$setTransparency(packet.isActive());
-                        } else if (effect.equals(ModRegistries.GHOST_STATE_EFFECT)) {
-                            ((LivingEntityWithEffects) livingEntity).ghost$setGhostState(packet.isActive());
-                        }
-                    }
+                    Utils.handleEffectPacket(packet, entity);
                 } else {
                     packetMap.put(packet.getEntityId(), packet);
                 }

@@ -2,7 +2,12 @@ package dev.renoux.ghost.utils;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import dev.renoux.ghost.Ghost;
+import dev.renoux.ghost.load.ModRegistries;
+import dev.renoux.ghost.networking.EffectPacket;
 import net.minecraft.client.Minecraft;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
@@ -29,5 +34,16 @@ public class Utils {
         double borderY = h * Ghost.BORDER*2;
 
         return x > borderX && x < w - borderX && yDown > borderY && yUp < h - borderY;
+    }
+
+    public static void handleEffectPacket(EffectPacket packet, Entity entity) {
+        MobEffect effect = BuiltInRegistries.MOB_EFFECT.get(packet.getEffectResourceLocation());
+        if (entity instanceof LivingEntity livingEntity) {
+            if (effect.equals(ModRegistries.TRANSPARENCY_EFFECT)) {
+                ((LivingEntityWithEffects) livingEntity).ghost$setTransparency(packet.isActive());
+            } else if (effect.equals(ModRegistries.GHOST_STATE_EFFECT)) {
+                ((LivingEntityWithEffects) livingEntity).ghost$setGhostState(packet.isActive());
+            }
+        }
     }
 }

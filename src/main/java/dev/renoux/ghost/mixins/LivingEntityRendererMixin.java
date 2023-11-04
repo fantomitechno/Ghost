@@ -34,7 +34,7 @@ public abstract class LivingEntityRendererMixin<T extends LivingEntity, M extend
 
     @Inject(method = "isBodyVisible(Lnet/minecraft/world/entity/LivingEntity;)Z", at = @At("RETURN"), cancellable = true)
     private void ghost$transparencyEffect(T entity, CallbackInfoReturnable<Boolean> cir) {
-        if (((LivingEntityWithEffects) entity).ghost$getTransparency()) {
+        if (((LivingEntityWithEffects) entity).ghost$getTransparency() || ((LivingEntityWithEffects) entity).ghost$getGhostState() && Minecraft.getInstance().player.is(entity)) {
             cir.setReturnValue(false);
             cir.cancel();
         }
