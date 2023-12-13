@@ -2,15 +2,17 @@
   "schema_version": 1,
   "quilt_loader": {
     "group": "dev.renoux",
-    "id": "ghost",
+    "id": "ghost_state",
     "version": "${version}",
     "metadata": {
-      "name": "Ghost",
+      "name": "Ghost State",
       "description": "I'm ghost",
       "contributors": {
         "Simon - fantomitechno (aka Simon R)": "uwu"
       },
       "contact": {
+        "sources": "https://github.com/fantomitechno/Ghost",
+        "issues": "https://github.com/fantomitechno/Ghost/issues"
       }
     },
     "intermediate_mappings": "net.fabricmc:intermediary",
