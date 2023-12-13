@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "ghost:item/totem_of_ghost"
+    "layer0": "ghost_state:item/totem_of_ghost"
   }
 }

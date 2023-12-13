@@ -7,6 +7,9 @@
     "metadata": {
       "name": "Ghost State",
       "description": "I'm ghost",
+      "icon": {
+        "16": "assets/ghost_state/icon.png"
+      },
       "contributors": {
         "Simon - fantomitechno (aka Simon R)": "uwu"
       },

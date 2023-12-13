@@ -13,11 +13,11 @@
       "item": "minecraft:totem_of_undying"
     },
     "E": {
-      "item": "ghost:ghost_essence"
+      "item": "ghost_state:ghost_essence"
     }
   },
   "result": {
-    "item": "ghost:ghost_totem",
+    "item": "ghost_state:ghost_totem",
     "count": 1
   }
 }

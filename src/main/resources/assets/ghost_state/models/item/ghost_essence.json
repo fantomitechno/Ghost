@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "ghost:item/ghost_essence"
+    "layer0": "ghost_state:item/ghost_essence"
   }
 }

@@ -7,8 +7,8 @@
   "item.minecraft.potion.effect.long_transparency": "Potion of Transparency",
   "item.minecraft.lingering_potion.effect.long_transparency": "Lingering Potion of Transparency",
   "item.minecraft.tiped_arrow.effect.long_transparency": "Arrow of Transparency",
-  "effect.ghost.transparency": "Transparency",
-  "effect.ghost.ghost_state": "Ghost State",
-  "item.ghost.ghost_totem": "Ghost Totem",
-  "item.ghost.ghost_essence": "Ghost essence"
+  "effect.ghost_state.transparency": "Transparency",
+  "effect.ghost_state.ghost_state": "Ghost State",
+  "item.ghost_state.ghost_totem": "Ghost Totem",
+  "item.ghost_state.ghost_essence": "Ghost essence"
 }
