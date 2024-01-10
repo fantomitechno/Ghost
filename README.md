@@ -1,4 +1,5 @@
 # Ghost state
+[![modrinth](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/modrinth_vector.svg)](https://modrinth.com/mod/ghost-state)
 
 A mod to be a ghost
 
